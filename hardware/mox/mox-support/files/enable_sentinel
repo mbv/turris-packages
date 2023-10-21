@@ -1,8 +1,0 @@
-#!/bin/sh
-
-# To make reForis show green checkmarks
-uci -q batch <<EOF
-  del_list pkglists.pkglists.pkglist=datacollect
-  add_list pkglists.pkglists.pkglist=datacollect
-  commit pkglists.pkglists
-EOF

@@ -1,2 +1,0 @@
-#!/bin/sh
-[ ! -x /etc/updater/hook_postupdate/10_kernel-install ] || /etc/updater/hook_postupdate/10_kernel-install

@@ -1,4 +1,0 @@
-#!/bin/sh
-if [ "$ROOT_DIR" = "/" ]; then
-	turris1x-btrfs-kernel-install "/"
-fi

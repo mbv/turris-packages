@@ -1,3 +1,0 @@
-MAILTO=""
-
-15	*/12	*	*	*	root	/usr/bin/netboot-manager update_rootfs -s

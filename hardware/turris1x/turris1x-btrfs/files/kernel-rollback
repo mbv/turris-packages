@@ -1,2 +1,0 @@
-#!/bin/sh
-turris1x-btrfs-kernel-install "$1"
