@@ -45,6 +45,3 @@ endef
 define TRANSLATION
 $$(foreach LANG,$(2),$$(eval $$(call TRANSLATION_LANG,$(1),$$(LANG))))
 endef
-
-$(eval $(call TRANSLATION,pkglists,cs da de el es fi fo fr hr hu it ja ko lt nb_NO nl pl ro ru sk sv))
-$(eval $(call TRANSLATION,user-notify,cs da de el es fi fo fr hr hu it ja ko lt nb_NO nl pl ro ru sk sv tr))
