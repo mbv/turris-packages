@@ -41,7 +41,6 @@ define Package/foris-controller-app
   DEPENDS:=\
     +python3-light +python3-ubus +python3-prctl +python3-multiprocessing +python3-pbkdf2 +python3-zeroconf \
     +foris-schema +python3-setuptools +turrishw \
-    +turris-maintain \
     +sqm-scripts +fosquitto +python3-paho-mqtt +turris-cagen \
     +crypto-wrapper +python3-slugify +turris-timezone
 endef
