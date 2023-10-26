@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=mox-otp
-PKG_VERSION:=0.3.1
+PKG_VERSION:=0.4.0
 PKG_RELEASE:=$(AUTORELEASE)
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=https://gitlab.nic.cz/turris/mox-otp.git
-PKG_MIRROR_HASH:=3e10093edb08c82f3aeff9d95ce18ca4a391d726df5dc85a4fbb56d7957cf3de
+PKG_SOURCE_URL:=https://github.com/mbv/emulated-mox-otp.git
+PKG_MIRROR_HASH:=46f5f519d27c45a3f041e96729b312ce17e72106
 PKG_SOURCE_VERSION:=v$(PKG_VERSION)
 
 PKG_MAINTAINER:=CZ.NIC <packaging@turris.cz>
@@ -25,7 +25,7 @@ include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
 
 define Package/mox-otp
   TITLE:=MOX OTP CLI
-  URL:=https://gitlab.nic.cz/turris/mox-otp
+  URL:=https://github.com/mbv/emulated-mox-otp
   PROVIDES:=turris-otp
   DEPENDS:=+python3-light
 endef
