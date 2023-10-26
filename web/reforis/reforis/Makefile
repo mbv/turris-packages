@@ -34,24 +34,7 @@ define Package/reforis
   TITLE:=reforis
   URL:=https://gitlab.nic.cz/turris/reforis
   DEPENDS:= \
-    +crypto-wrapper \
-    +foris-client \
-    +foris-controller-app \
-    +foris-ws \
-    +fosquitto \
-    +lighttpd \
-    +lighttpd-mod-alias \
-    +lighttpd-mod-fastcgi \
-    +lighttpd-mod-redirect \
-    +lighttpd-mod-setenv \
-    +turris-auth \
-    +python3-flask \
-    +python3-flask-babel \
-    +python3-flask-seasurf \
-    +python3-flup \
-    +python3-light \
-    +python3-paho-mqtt \
-    +turris-maintain
+    +lighttpd
 endef
 
 define Package/reforis/description
