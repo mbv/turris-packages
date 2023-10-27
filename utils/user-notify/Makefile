@@ -23,7 +23,7 @@ include $(INCLUDE_DIR)/package.mk
 
 define Package/user-notify
   TITLE:=Turris user notifications
-  DEPENDS:=+at +msmtp +ca-certificates +crypto-wrapper +sentinel-certgen +gettext-full +create_notification +curl
+  DEPENDS:=+at +msmtp +ca-certificates +crypto-wrapper +sentinel-certgen +gettext-tools +create_notification +curl
 endef
 
 Build/Compile:=:
@@ -49,7 +49,7 @@ endef
 
 define Package/create_notification
   TITLE:=Create Turris user notification
-  DEPENDS:=+gettext-full
+  DEPENDS:=+gettext-tools
 endef
 
 define Package/create_notification/install
