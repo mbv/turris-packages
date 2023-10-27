@@ -26,6 +26,7 @@ define Package/updater-supervisor
   SECTION:=updater
   CATEGORY:=Turris Updater
   TITLE:=Updater supervisor and its library
+  PYTHON3_PKG_WHEEL_NAME:=svupdater
   DEPENDS:= \
     +pkglists +l10n-supported \
     +python3-light +python3-uci +python3-distro +python3-packaging +python3-crontab \
