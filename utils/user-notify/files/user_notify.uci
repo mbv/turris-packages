@@ -1,0 +1,34 @@
+package 'user_notify'
+
+config smtp smtp
+	option enable 0
+	option use_turris_smtp 1
+	option sender_name 'turris'
+	#option from 'router@example.com'
+	#option server 'example.com'
+	#option port 465
+	#option username 'router'
+	#option password '1234'
+	#option security 'ssl' # or 'starttls' or 'none'
+	#list to 'user@example.com'
+
+config ntfy ntfy
+	option enable 0
+	# Set to your secret ntfy URL
+	option url ''
+	# Define the priority of the notification, see https://docs.ntfy.sh/publish/#message-priority
+	option priority 'high'
+
+config notifications notifications
+	# 1: restarts
+	# 2: restarts and errors
+	# 3: restarts, errors and updates
+	option severity 1
+	# Send news severity
+	option news 1
+
+config reboot reboot
+	# Days, how long to wait before reboot (only if notifications are enabled)
+	option delay 3
+	# If present, schedule the reboot to specified time
+	option time '03:30'
