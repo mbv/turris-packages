@@ -1,0 +1,29 @@
+#!/bin/sh
+set -eu
+
+/etc/init.d/resolver enabled || exit 0
+
+# get $RESOLV_CONF_PATH
+RESOLV_CONF_PATH="/dev/null"
+if [ "$(uci -q get resolver.common.forward_upstream || echo 1)" = "1" ] ; then
+	# Note: there are two locations for resolv.conf.auto (old and new)
+	# https://github.com/openwrt/openwrt/commit/cd48d8d3420dd4df03daaa548227ceb487ba7104
+	for resolv_conf_path in /etc/resolv.conf.vpn.* "/tmp/resolv.conf.auto" "/tmp/resolv.conf.d/resolv.conf.auto"; do
+		if [ -f "$resolv_conf_path" ]; then
+			RESOLV_CONF_PATH="$resolv_conf_path"
+			break
+		fi
+	done
+	[ "$RESOLV_CONF_PATH" != "/dev/null" ] \
+		|| echo "File resolv.conf.auto is missing!" >&2
+fi
+
+# Hash the relevant inputs and compare.
+#   The br-lan addresses aren't relevant if resolver.common.interface is set
+#   and apparently when unbound is used, but it shouldn't change often anyway.
+MD5_NEW=$( (ip address show br-lan | grep -Ev "valid_lft [0-9]+sec"; cat "$RESOLV_CONF_PATH") | md5sum - | cut -f1 -d' ')
+MD5_OLD=$(cat /tmp/resolver-reload-inputs.md5 || true)
+if [ "$MD5_NEW" != "$MD5_OLD" ]; then
+	echo -n "$MD5_NEW" >/tmp/resolver-reload-inputs.md5
+	/etc/init.d/resolver reload
+fi
