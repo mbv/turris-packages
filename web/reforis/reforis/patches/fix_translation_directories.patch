@@ -1,0 +1,17 @@
+Index: reforis/locale.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/reforis/locale.py b/reforis/locale.py
+--- a/reforis/locale.py	(revision 6a79c0cca8055830b8091f6c0487378a78a88b98)
++++ b/reforis/locale.py	(revision db97348ceb016708400fd775c3b39bd538abb83a)
+@@ -120,7 +120,7 @@
+     babel = current_app.extensions['babel']
+     translations = TranslationsHelper.load(
+         # There is only one directory with translations in reForis so it's OK.
+-        next(babel.translation_directories),
++        next(iter(babel.translation_directories)),
+         [get_locale()],
+         domain
+     )
