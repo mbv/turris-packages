@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=turrishw
-PKG_VERSION:=0.10.0
+PKG_VERSION:=0.13.0
 PKG_RELEASE:=$(AUTORELEASE)
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=https://gitlab.nic.cz/turris/turrishw.git
-PKG_MIRROR_HASH:=4c4a07b7b2435a505aaa1ba94378f9ff0f6213f9918a276dd557575291c849d3
+PKG_SOURCE_URL:=https://github.com/mbv/turrishw.git
+PKG_MIRROR_HASH:=46de20fc924f7c90fcb384b77933f10ec6e607f2
 PKG_SOURCE_VERSION:=v$(PKG_VERSION)
 
 PKG_MAINTAINER:=CZ.NIC <packaging@turris.cz>
