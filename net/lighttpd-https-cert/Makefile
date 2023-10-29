@@ -21,7 +21,7 @@ define Package/lighttpd-https-cert
   CATEGORY:=Network
   SUBMENU:=Web Servers/Proxies
   TITLE:=Lighttpd HTTPS support
-  DEPENDS:=(lighttpd-mod-openssl || lighttpd-mod-wolfssl)
+  DEPENDS:=+lighttpd-mod-openssl
 endef
 
 define Package/lighttpd-https-cert/install
