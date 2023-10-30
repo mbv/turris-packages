@@ -1,0 +1,57 @@
+#!/bin/sh
+set -e
+BACKEND="/usr/share/cert-backup/backend.sh"
+
+[ "$(id -u)" = "0" ] || {
+	echo "You have to be root to run cert-backup" >&2
+	exit 1
+}
+
+. "$BACKEND"
+
+# Create temporally directory
+workdir="$(mktemp -d)"
+cleanup() {
+	[ -z "$(findmnt -M "$workdir")" ] || umount "$workdir"
+	rmdir "$workdir"
+}
+trap cleanup EXIT INT QUIT TERM ABRT
+
+# Mount certificate store
+mount_store "$workdir"
+
+
+# Process arguments
+# Note: This interface should be preserved in behavior so we are backward
+# compatible. It is not nice but changing it means to changing usage of it in
+# multiple other places.
+while [ $# -gt 0 ] ; do
+	case "$1" in
+		-r)
+			# It should be removed, if it exists
+			shift
+			rm -f "$workdir/$1"
+			;;
+		-x)
+			# Reverse, extractor mode
+			shift
+			cp -a "$workdir/$1" "$1"
+			;;
+		-X)
+			# Reverse, all extractor mode somewhere
+			destination="${2-/}"
+			[ -z "$2" ] || shift
+			cp -a "$workdir"/. "$destination"
+			;;
+		*)
+			if cmp -s "$1" "$workdir/$1" ; then
+				echo "$1" already stored, skipping
+			else
+				# It differs (or the backup doesn't exist) -> replace
+				mkdir -p "$workdir/$(dirname "$1")"
+				cp -a "$1" "$workdir/$1"
+			fi
+			;;
+	esac
+	shift
+done
